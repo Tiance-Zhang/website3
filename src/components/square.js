@@ -5,7 +5,8 @@ class Square extends Component {
   render() {
     return (
       <button className="square">
-        {/* TODO */}
+       {/* button显示square props value*/}
+        {this.props.value}
       </button>
     );
   }

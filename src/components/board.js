@@ -3,8 +3,9 @@ import { Square } from './square';
 import './board.css';
 
 class Board extends Component {
+  /* 写一个方法：给square 传入值*/
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i}/>;
   }
 
   render() {
