@@ -18,7 +18,10 @@ class Board extends Component {
   renderSquare(i) {
     /*from board, pass the individual state to square*/
     /*sqaure show its individual state*/
-    return <Square value={this.state.squares[i]}/>;
+    return <Square 
+             value={this.state.squares[i]}
+             /*when click, call handleClick（）*/
+             onClick ={()=> this.handleClick(i)}/>;
   }
 
   render() {
