@@ -3,6 +3,15 @@ import { Square } from './square';
 import './board.css';
 
 class Board extends Component {
+  
+  constructor(props){
+    super(props);
+    this.statet = {
+      square:thisl
+    }
+  }
+  
+  
   /* define renderSquare function：pass a value to the squre*/
   renderSquare(i) {
     return <Square value={i}/>;
