@@ -4,17 +4,20 @@ import './board.css';
 
 class Board extends Component {
   
+  /* define a state: create a array to store the state of all 9 sqaure; we can pass the value to square by props later*/
+  /* initialize the array with null*/
   constructor(props){
     super(props);
-    this.statet = {
-      square:thisl
-    }
+    this.state = {
+      squares: Array(9).fill(null),
+    };
   }
   
   
   /* define renderSquare function：pass a value to the squre*/
   renderSquare(i) {
-    return <Square value={i}/>;
+    /*from board, pass the individual state to square*/
+    return <Square value={this.state.squares[i]}/>;
   }
 
   render() {
