@@ -17,6 +17,7 @@ class Board extends Component {
   /* define renderSquare function：pass a value to the squre*/
   renderSquare(i) {
     /*from board, pass the individual state to square*/
+    /*sqaure show its individual state*/
     return <Square value={this.state.squares[i]}/>;
   }
 
