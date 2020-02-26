@@ -6,32 +6,35 @@ class Board extends Component {
   
   /* define a state: create a array to store the state of all 9 sqaure; we can pass the value to square by props later*/
   /* initialize the array with null*/
+  /*
   constructor(props){
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      xIsNext:true, /* let 'X' go first*/
+      xIsNext:true,   let 'X' go first
     };
   }
-  
+  */
   
   /* define renderSquare function：pass a value to the squre*/
-  renderSquare(i) {
+  renderSquare(i) { /*从Game组件中接收square和onclick这两个props, 把每个square对应的位置穿个onClick监听函数*/
     /*from board, pass the individual state to square*/
     /*sqaure show its individual state*/
     return <Square 
-             value={this.state.squares[i]}
+             value={this.props.squares[i]}  
              /*when click, call handleClick（）*/
-             onClick ={()=> this.handleClick(i)}/>; /*处理事件的监听方法*/
+             onClick ={()=> this.props.onClick(i)}/>; /*处理事件的监听方法*/
   }
   
   /*Define handleClick()  处理事件监听*/
   /* when click on the square-> the state of square is changed , update state in the Board in an array*/
   /*Board component controls square component; square component gets its value from board component*/
   handleClick(i){
-    const squares = this.state.squares.slice(); /*create a copy of squares array*/
+    const squares = this.state.squares.slice(); /*create a copy of squares array, then keep a history of each move*/
     
-    if (calculateWinner(squares))
+    if (calculateWinner(squares) || squares[i]){ /*someone wins or a square is filled*/
+      return; /*do nothing*/
+    }
     
     squares[i] = this.state.xIsNext? 'X':'O'; /*'X' and 'O' take turns*/
     this.setState({squares:squares,/*replace old value by new value: can track change in the future*/
