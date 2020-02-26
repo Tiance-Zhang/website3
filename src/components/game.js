@@ -10,12 +10,13 @@ class Game extends React.Component {
       history: [{
         squares: Array(9).fill(null)
       }],
-      xIsNext: true
+      xIsNext: true,
+      stepNumber:0,
     };
   }
 
   handleClick(i) {
-    const history = this.state.history;
+    const history = this.state.history.slice(0, this.state.stepNumber + 1); /*update stepNumber*/
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
@@ -26,13 +27,21 @@ class Game extends React.Component {
       history: history.concat([{
         squares: squares
       }]),
+      stepNumber:history.length,
       xIsNext: !this.state.xIsNext,
+    });
+  }
+  
+  jumpTo(step){
+    this.setState({
+      stepNumber:step, /*update step number*/
+      xIsNext:(step % 2)===0, /*when step is an even number, set xIsNext to be true*/
     });
   }
   
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1];
+    const current = history[this.state.stepNumber]; /*current为当前步走过的样子*/
     const winner = calculateWinner(current.squares);
     
     /*back to certain move*/
@@ -42,7 +51,7 @@ class Game extends React.Component {
         'Go to move #' + move :
         'Go to game start';
       return (
-        <li>
+        <li key = {move}> {/*use the move index as a key*/}
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
