@@ -18,7 +18,7 @@ class Square extends Component {
       /*pass a arrow function to the onClick event handler*/
       /*when click on the square, set value of state to be 'X'*/
       <button className="square" 
-        onClick ={()=>this.props.onClick()} > {/* event handler*/}
+        onClick ={()=>this.props.onClick()} > {/* onClick事件监听 当square事件函数触发， 其实触发board中的this.handleclick(i)*/}
        {/* button shows square state value*/}
         {this.props.value}
       </button>

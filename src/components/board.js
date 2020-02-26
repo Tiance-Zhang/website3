@@ -21,8 +21,19 @@ class Board extends Component {
     return <Square 
              value={this.state.squares[i]}
              /*when click, call handleClick（）*/
-             onClick ={()=> this.handleClick(i)}/>;
+             onClick ={()=> this.handleClick(i)}/>; /*处理事件的监听方法*/
   }
+  
+  /*Define handleClick()  处理事件监听*/
+  /*When click , the state of square is changed -> store the state in the Board in an array*/
+  /*Board component controls square component; square component gets its value from board component*/
+  handleClick(i){
+    const squares = this.state.squares.slice(); /*create a copy of sqaures array*/
+    squares[i] = 'X';
+    this.setState({squares:squares});
+  }
+  
+  
 
   render() {
     const status = 'Next player: X';
