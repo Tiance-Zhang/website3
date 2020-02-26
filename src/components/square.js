@@ -27,3 +27,16 @@ class Square extends Component {
 }
 
 export { Square }
+
+/*
+  function component：只有render方法的情况下，可用函数组件替代class
+  use props instead of this.props
+  
+  function Square(props){
+    return (
+    <button className ="square" onClick = {props.onClick}>
+    {props.value} 
+    </button>
+    );
+    }
+*/

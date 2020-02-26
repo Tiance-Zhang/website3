@@ -10,6 +10,7 @@ class Board extends Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
+      xIsNext:true, /* let 'X' go first*/
     };
   }
   
@@ -25,12 +26,14 @@ class Board extends Component {
   }
   
   /*Define handleClick()  处理事件监听*/
-  /*When click , the state of square is changed -> store the state in the Board in an array*/
+  /* when click on the square-> the state of square is changed , update state in the Board in an array*/
   /*Board component controls square component; square component gets its value from board component*/
   handleClick(i){
-    const squares = this.state.squares.slice(); /*create a copy of sqaures array*/
+    const squares = this.state.squares.slice(); /*create a copy of squares array*/
     squares[i] = 'X';
-    this.setState({squares:squares});
+    this.setState({squares:squares,/*replace old value by new value: can track change in the future*/
+                   xIsNext:!this.state.x
+                  });
   }
   
   
