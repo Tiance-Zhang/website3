@@ -3,7 +3,7 @@ import { Square } from './square';
 import './board.css';
 
 class Board extends Component {
-  /* 写一个方法：给square 传入值*/
+  /* define renderSquare function：pass a value to the squre*/
   renderSquare(i) {
     return <Square value={i}/>;
   }
