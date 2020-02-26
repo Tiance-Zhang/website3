@@ -29,23 +29,26 @@ class Board extends Component {
   /*Define handleClick()  处理事件监听*/
   /* when click on the square-> the state of square is changed , update state in the Board in an array*/
   /*Board component controls square component; square component gets its value from board component*/
+  /*
   handleClick(i){
     const history = this.state.history;
     const current = history[history.length - 1];
-    const squares = current.squares.slice(); /*create a copy of squares array, then keep a history of each move*/
+    const squares = current.squares.slice(); *create a copy of squares array, then keep a history of each move*
     
-    if (calculateWinner(squares) || squares[i]){ /*someone wins or a square is filled*/
-      return; /*do nothing*/
+    if (calculateWinner(squares) || squares[i]){ *someone wins or a square is filled*
+      return; *do nothing*
     }
     
-    squares[i] = this.state.xIsNext? 'X':'O'; /*'X' and 'O' take turns*/
+    squares[i] = this.state.xIsNext? 'X':'O'; *'X' and 'O' take turns*
     this.setState({
-      history:history.concat,/*replace old value by new value: can track change in the future*/
-                   xIsNext:!this.state.xIsNext, /*flip the value of xIsNext after each click, then 'X' and 'O' can take turns*/
-                  });
+      history:history.concat([{
+        squares:squares,
+      }]),/*replace old value by new value: can track change in the future*
+         xIsNext:!this.state.xIsNext, /*flip the value of xIsNext after each click, then 'X' and 'O' can take turns*
+      });
   }
   
-  
+  */
 
   render() {
 
