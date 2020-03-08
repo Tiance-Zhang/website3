@@ -3,58 +3,74 @@ import { Square } from './square';
 import './board.css';
 
 class Board extends Component {
-  
-  /* define a state: create a array to store the state of all 9 sqaure; we can pass the value to square by props later*/
-  /* initialize the array with null*/
-  /*
+
+  rowNum = 9;
+  colNum =  9;
+
   constructor(props){
     super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext:true,   let 'X' go first
-    };
+    this.state = {stones: Array(this.rowNum * this.colNum).fill(null),
+                  stonesBf: Array(this.rowNum * this.colNum).fill(null),
+                  isBlack: true};
   }
-  */
-  
-  /* define renderSquare function：pass a value to the squre*/
-  renderSquare(i) { /*从Game组件中接收square和onclick这两个props, 把每个square对应的位置穿个onClick监听函数*/
-    /*from board, pass the individual state to square*/
-    /*sqaure show its individual state*/
-    return <Square 
-             value={this.props.squares[i]}  
-             /*when click, call handleClick（）*/
-             onClick ={()=> this.props.onClick(i)}/>; /*处理事件的监听方法*/
-  }
-  
-  /*Define handleClick()  处理事件监听*/
-  /* when click on the square-> the state of square is changed , update state in the Board in an array*/
-  /*Board component controls square component; square component gets its value from board component*/
-  /*
-  handleClick(i){
-    const history = this.state.history;
-    const current = history[history.length - 1];
-    const squares = current.squares.slice(); *create a copy of squares array, then keep a history of each move*
-    
-    if (calculateWinner(squares) || squares[i]){ *someone wins or a square is filled*
-      return; *do nothing*
+
+  handleClick(i) {
+    const bfStones = this.state.stones.slice(); // to avoid same-pointer thing
+    const crtStones = this.state.stones.slice(); // make a copy. I didn't use this.
+    if (crtStones[i] == null){
+      this.setState({stonesBf: bfStones});
+      crtStones[i] = this.state.isBlack? '●' : '○';
+      this.setState({stones: crtStones, isBlack: !this.state.isBlack});
+      // console.log(stones);
+      this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);
+      //props can be anything
     }
-    
-    squares[i] = this.state.xIsNext? 'X':'O'; *'X' and 'O' take turns*
-    this.setState({
-      history:history.concat([{
-        squares:squares,
-      }]),/*replace old value by new value: can track change in the future*
-         xIsNext:!this.state.xIsNext, /*flip the value of xIsNext after each click, then 'X' and 'O' can take turns*
-      });
+    else{    //remove an existing stone
+      this.setState({stonesBf: bfStones});
+      crtStones[i] = null;
+      this.setState({stones: crtStones});
+      // console.log(crtStones);
+      this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);
+    }
+
   }
-  
-  */
+
+  renderSquare(i) {
+    return <Square key={"square-" + i} value={this.state.stones[i]} onClick={() => this.handleClick(i)} />;
+  }
+
+  undo(){
+    this.setState({stones: this.state.stonesBf, isBlack: !this.state.isBlack});
+  }
+  pass(){
+    this.setState({isBlack: !this.state.isBlack});
+  }
 
   render() {
+    const status = 'Next player: ' + (this.state.isBlack? "Black" : "White");
+
+
+    //const means you cannot change what it points to.
+    //const row = []; then row =[1, 2, 3] is invalid!
+    //but row.push() is OK.
+    const showBoard = [];
+
+    for (let ri = 0; ri < this.rowNum; ri++){
+      const eachRow = [];
+      for (let cj = 0; cj < this.colNum; cj++){
+        eachRow.push(this.renderSquare(ri * this.rowNum + cj));
+      }
+      showBoard.push(<div key={"row" + ri} className="board-row">{eachRow}</div>)
+    }
+
+
 
     return (
-        <div>
-        <div className="board-row">
+      <div>
+        <div>Black goes first.</div>
+        <div className="status"><strong>{status}</strong></div>
+        {showBoard}
+        {/* <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
@@ -68,12 +84,13 @@ class Board extends Component {
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
-        </div>
+        </div> */}
+        <button class="btn btn-light" onClick={() => this.undo()}>UNDO</button>
+        <button class="btn btn-light" onClick={() => this.pass()}>PASS</button>
+        <div>Click existing stones to remove them.</div> 
       </div>
     );
   }
 }
-
-
 
 export { Board }
