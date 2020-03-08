@@ -3,8 +3,8 @@ import { Square } from "./square";
 import "./board.css";
 
 class Board extends Component {
-  rowNum = 9;
-  colNum = 9;
+  rowNum = 19;
+  colNum = 19;
 
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class Board extends Component {
     const crtStones = this.state.stones.slice(); // make a copy. I didn't use this.
     if (crtStones[i] == null) {
       this.setState({ stonesBf: bfStones });
-      crtStones[i] = this.state.isBlack ? "●" : "○";
+      crtStones[i] = this.state.isBlack ? "★" : "O";
       this.setState({ stones: crtStones, isBlack: !this.state.isBlack });
       // console.log(stones);
       this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);

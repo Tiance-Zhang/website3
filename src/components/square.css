@@ -8,7 +8,7 @@
   padding: 0;
   text-align: center;
   width: 36px;
-  background: url("https://cdn.glitch.com/421192fb-0c1e-4772-bb8d-2ca6af678d20%2FTB7%5DQE%7B%24A)B63%25FZ2HD_4TG.png?v=1583643369037");
+  background: url("https://cdn.glitch.com/421192fb-0c1e-4772-bb8d-2ca6af678d20%2F880%259KFVAI0T38~9862KV%5BS.png?v=1583643555347");
   background-size: 36px 36px;
 }
 
@@ -18,8 +18,4 @@
 
 .square:hover {
   border: 0.3px black dashed;
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
 }
