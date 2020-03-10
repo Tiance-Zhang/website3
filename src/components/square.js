@@ -7,7 +7,6 @@ class Square extends Component {
     super(props);
     this.state = {
       stoneImg: '',
-      //stoneImg: '',
     }
   }
   

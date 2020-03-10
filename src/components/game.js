@@ -6,8 +6,7 @@ class GO extends Component {
   
   constructor(props){
     super(props);
-    //Black goes first.
-    this.state = {crtPlayerIsBlack: true, gameStoneNum: 0};
+    this.state = {IsBlack: false, gameStoneNum: 0};
   }
   
   renewStoneNum(stoneNum){

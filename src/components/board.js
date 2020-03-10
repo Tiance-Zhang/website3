@@ -63,6 +63,7 @@ class Board extends Component {
 
     return (
       <div>
+        <h2 class="text-warning">Click existing stones to remove them.</h2>
         <div className="status">
           <strong>{status}</strong>
         </div>
@@ -73,7 +74,7 @@ class Board extends Component {
         <button class="btn btn-danger" onClick={() => this.pass()}>
           PASS
         </button>
-        <div>Click existing stones to remove them.</div>
+        <h2 class="text-warning">Click existing stones to remove them.</h2>
       </div>
     );
   }
