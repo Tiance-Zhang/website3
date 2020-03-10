@@ -6,21 +6,21 @@ class GO extends Component {
   
   constructor(props){
     super(props);
-    this.state = {IsBlack: false, gameStoneNum: 0};
+    this.state = {IsBlack: false, goStoneNum: 0};
   }
   
-  renewStoneNum(stoneNum){
-    this.setState({gameStoneNum: stoneNum});
+  stoneNum(stoneNum){
+    this.setState({goStoneNum: stoneNum});
   }
 
   render() {
     return (
       <div className="game">
         <div className="game-board">
-          <Board onStoneNumUpdated = {(stoneNum) => this.renewStoneNum(stoneNum)}/>
+          <Board onStoneNumUpdated = {(stoneNum) => this.stoneNum(stoneNum)}/>
         </div>
         <div className="game-info">
-          <div>Now {this.state.gameStoneNum} stones total.</div>
+          <div><h4>We have {this.state.goStoneNum} stars on board.</h4></div>
         </div>
       </div>
     );

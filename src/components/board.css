@@ -2,9 +2,14 @@
   clear: both;
   content: "";
   display: table; 
-  background-color:grey;
 }
 
 .status {
   margin-bottom: 10px;
+}
+.GOB{
+  background:grey; 
+}
+.btn btn-danger{
+  
 }

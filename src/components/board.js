@@ -62,9 +62,7 @@ class Board extends Component {
     }
 
     return (
-      <div class="container">
-        
-      <div class="text-center">
+        <div class="text-center" className="GOB">
         <h2 class="text-warning">If you want to REMOVE a star, just CLICK on it!</h2>
         <div className="status" >
           <h3>{status}</h3>
@@ -73,11 +71,9 @@ class Board extends Component {
         <button class="btn btn-danger" onClick={() => this.undo()}>
           UNDO
         </button>
-        <button class="btn btn-danger" onClick={() => this.pass()}>
+        <button class="btn btn-danger"  onClick={() => this.pass()}>
           PASS
         </button>
-      
-      </div>
       </div>
     );
   }

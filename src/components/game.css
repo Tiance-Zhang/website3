@@ -4,5 +4,7 @@
 }
 
 .game-info {
-  margin-left: 20px;
+  position: relative;
+  left: -18%;
+  top: 45px;
 }
