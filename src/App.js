@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Game } from "./components/game";
+import { GO } from "./components/game";
 
 class App extends Component {
   render() {
     return (
       <div className="app-component">
-        <Game />
+        <GO />
       </div>
     );
   }

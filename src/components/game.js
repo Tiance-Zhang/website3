@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Board } from './board';
 import './game.css';
 
-class Game extends Component {
+class GO extends Component {
   
   constructor(props){
     super(props);
@@ -22,11 +22,10 @@ class Game extends Component {
         </div>
         <div className="game-info">
           <div>Now {this.state.gameStoneNum} stones total.</div>
-          <ol>{/* TODO */}</ol>
         </div>
       </div>
     );
   }
 }
 
-export { Game }
+export { GO }

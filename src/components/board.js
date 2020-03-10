@@ -67,10 +67,10 @@ class Board extends Component {
           <strong>{status}</strong>
         </div>
         {showBoard}
-        <button class="btn btn-light" onClick={() => this.undo()}>
+        <button class="btn btn-danger" onClick={() => this.undo()}>
           UNDO
         </button>
-        <button class="btn btn-light" onClick={() => this.pass()}>
+        <button class="btn btn-danger" onClick={() => this.pass()}>
           PASS
         </button>
         <div>Click existing stones to remove them.</div>
