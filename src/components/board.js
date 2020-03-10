@@ -15,12 +15,12 @@ class Board extends Component {
     };
   }
 
-  handleClick(i) {
+  handleClick(e) {
     const bfStones = this.state.stones.slice(); // to avoid same-pointer thing
     const crtStones = this.state.stones.slice(); // make a copy. I didn't use this.
-    if (crtStones[i] == null) {
+    if (crtStones[e] == null) {
       this.setState({ stonesBf: bfStones });
-      crtStones[i] = this.state.isBlack ? "★" : "O";
+      crtStones[e] = this.state.isBlack ? "★" : "O";
       this.setState({ stones: crtStones, isBlack: !this.state.isBlack });
       // console.log(stones);
       this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);
@@ -28,19 +28,19 @@ class Board extends Component {
     } else {
       //remove an existing stone
       this.setState({ stonesBf: bfStones });
-      crtStones[i] = null;
+      crtStones[e] = null;
       this.setState({ stones: crtStones });
       // console.log(crtStones);
       this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);
     }
   }
 
-  renderSquare(i) {
+  renderSquare(e) {
     return (
       <Square
-        key={"square-" + i}
-        value={this.state.stones[i]}
-        onClick={() => this.handleClick(i)}
+        key={"square-" + e}
+        value={this.state.stones[e]}
+        onClick={() => this.handleClick(e)}
       />
     );
   }
@@ -48,7 +48,8 @@ class Board extends Component {
   undo() {
     this.setState({
       stones: this.state.stonesBf,
-      isBlack: !this.state.isBlack
+      /*isBlack: !this.state.isBlack*/
+       isBlack:this.state.isBlack ? this.state.isBlack: !this.state.isBlack
     });
   }
   pass() {
