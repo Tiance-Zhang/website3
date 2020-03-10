@@ -48,12 +48,12 @@ class Board extends Component {
   }
 
   render() {
-    const status = "Whose TURN? =====> " + (this.state.isBlack ? "★" : "");
+    const status = "Whose TURN ? =====> " + (this.state.isBlack ? "★" : "");
     const showBoard = [];
     for (let i = 0; i < this.rowNum; i++) {
       const row = [];
       for (let j = 0; j < this.colNum; j++) {
-        row.push(this.renderSquare(i * this.rowNum + j));
+        row.push(this.renderSquare(i * this.rowNum + j ));
       }
       showBoard.push(
         <div key={"row" + i} className="board-row">{row}
@@ -62,10 +62,12 @@ class Board extends Component {
     }
 
     return (
-      <div>
-        <h2 class="text-warning">Click existing stones to remove them.</h2>
-        <div className="status">
-          <strong>{status}</strong>
+      <div class="container">
+        
+      <div class="text-center">
+        <h2 class="text-warning">If you want to REMOVE a star, just CLICK on it!</h2>
+        <div className="status" >
+          <h3>{status}</h3>
         </div>
         {showBoard}
         <button class="btn btn-danger" onClick={() => this.undo()}>
@@ -74,7 +76,8 @@ class Board extends Component {
         <button class="btn btn-danger" onClick={() => this.pass()}>
           PASS
         </button>
-        <h2 class="text-warning">Click existing stones to remove them.</h2>
+      
+      </div>
       </div>
     );
   }

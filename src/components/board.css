@@ -1,8 +1,8 @@
-
 .board-row:after {
   clear: both;
   content: "";
-  display: table;
+  display: table; 
+  background-color:grey;
 }
 
 .status {
