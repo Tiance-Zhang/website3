@@ -31,6 +31,7 @@ class Board extends Component {
       crtStones[e] = null;
       this.setState({ stones: crtStones });
       // console.log(crtStones);
+      this.setState({isBlack: !this.state.isBlack});
       this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);
     }
   }
@@ -64,14 +65,16 @@ class Board extends Component {
     //but row.push() is OK.
     const showBoard = [];
 
-    for (let ri = 0; ri < this.rowNum; ri++) {
-      const eachRow = [];
-      for (let cj = 0; cj < this.colNum; cj++) {
-        eachRow.push(this.renderSquare(ri * this.rowNum + cj));
+    for (let i = 0; i < this.rowNum; i++) {
+      const row = [];
+      for (let j = 0; j < this.colNum; j++) {
+        row.push(this.renderSquare(i * this.rowNum + j));
       }
       showBoard.push(
-        <div key={"row" + ri} className="board-row">
-          {eachRow}
+        <div key={"row" + i} className="board-row">
+          {
+            row
+          }
         </div>
       );
     }
