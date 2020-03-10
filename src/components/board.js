@@ -68,12 +68,14 @@ class Board extends Component {
           <h3>{status}</h3>
         </div>
         {showBoard}
+        <div class="center-block">
         <button class="btn btn-danger" onClick={() => this.undo()}>
           UNDO
         </button>
         <button class="btn btn-danger"  onClick={() => this.pass()}>
           PASS
         </button>
+        </div>
       </div>
     );
   }

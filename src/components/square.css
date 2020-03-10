@@ -1,10 +1,10 @@
 .square {
   float: left;
-  font-size: 37px;
-  line-height: 36px;
+  font-size: 30px;
+  line-height: 35px;
   height: 36px;
-  margin-right: -1px;
-  margin-top: -1px;
+  margin-right: 0px;
+  margin-top: 0px;
   padding: 0;
   text-align: center;
   width: 36px;
