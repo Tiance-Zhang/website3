@@ -11,77 +11,58 @@ class Board extends Component {
     this.state = {
       stones: Array(this.rowNum * this.colNum).fill(null),
       stonesBf: Array(this.rowNum * this.colNum).fill(null),
-      isBlack: true
+      isBlack: false
     };
   }
-
-  handleClick(e) {
-    const bfStones = this.state.stones.slice(); // to avoid same-pointer thing
-    const crtStones = this.state.stones.slice(); // make a copy. I didn't use this.
-    if (crtStones[e] == null) {
-      this.setState({ stonesBf: bfStones });
-      crtStones[e] = this.state.isBlack ? "★" : "O";
-      this.setState({ stones: crtStones, isBlack: !this.state.isBlack });
-      // console.log(stones);
-      this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);
-      //props can be anything
-    } else {
-      //remove an existing stone
-      this.setState({ stonesBf: bfStones });
-      crtStones[e] = null;
-      this.setState({ stones: crtStones });
-      // console.log(crtStones);
-      this.setState({isBlack: !this.state.isBlack});
-      this.props.onStoneNumUpdated(crtStones.filter(s => s != null).length);
-    }
+  undo() {
+    this.setState({
+      stones: this.state.stonesBf,
+      isBlack: !this.state.isBlack   
+    });
   }
-
   renderSquare(e) {
     return (
       <Square
         key={"square-" + e}
         value={this.state.stones[e]}
-        onClick={() => this.handleClick(e)}
-      />
+        onClick={() => this.handleClick(e)}/>
     );
   }
+  pass() {this.setState({ isBlack: !this.state.isBlack });}
 
-  undo() {
-    this.setState({
-      stones: this.state.stonesBf,
-      isBlack: !this.state.isBlack
-       
-    });
-  }
-  pass() {
-    this.setState({ isBlack: !this.state.isBlack });
+  handleClick(e) {
+    const aStones = this.state.stones.slice(); 
+    const bStones = this.state.stones.slice();
+    if (bStones[e] == null) {
+      this.setState({ stonesBf: aStones });
+      bStones[e] = this.state.isBlack ? "★" : "☆";
+      this.setState({ stones: bStones, isBlack: !this.state.isBlack });
+      this.props.onStoneNumUpdated(bStones.filter(s => s != null).length);
+    }
+    else {
+      this.setState({ stonesBf: bStones });
+      bStones[e] = null;
+      this.setState({ stones: bStones });
+      this.props.onStoneNumUpdated(bStones.filter(s => s != null).length);
+    }
   }
 
   render() {
-    const status = "Next player: " + (this.state.isBlack ? "Black" : "White");
-
-    //const means you cannot change what it points to.
-    //const row = []; then row =[1, 2, 3] is invalid!
-    //but row.push() is OK.
+    const status = "Whose TURN? =====> " + (this.state.isBlack ? "★" : "");
     const showBoard = [];
-
     for (let i = 0; i < this.rowNum; i++) {
       const row = [];
       for (let j = 0; j < this.colNum; j++) {
         row.push(this.renderSquare(i * this.rowNum + j));
       }
       showBoard.push(
-        <div key={"row" + i} className="board-row">
-          {
-            row
-          }
+        <div key={"row" + i} className="board-row">{row}
         </div>
       );
     }
 
     return (
       <div>
-        <div>Black goes first.</div>
         <div className="status">
           <strong>{status}</strong>
         </div>
