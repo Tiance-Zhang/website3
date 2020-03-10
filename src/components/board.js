@@ -48,8 +48,8 @@ class Board extends Component {
   undo() {
     this.setState({
       stones: this.state.stonesBf,
-      /*isBlack: !this.state.isBlack*/
-       isBlack:this.state.isBlack ? this.state.isBlack: !this.state.isBlack
+      isBlack: !this.state.isBlack
+       
     });
   }
   pass() {
